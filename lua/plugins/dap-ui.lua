@@ -1,6 +1,8 @@
 return {
   "rcarriga/nvim-dap-ui",
-  dependencies = { "nvim-neotest/nvim-nio" },
+  dependencies = {
+    "nvim-neotest/nvim-nio",
+  },
   -- stylua: ignore
   keys = {
     { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
@@ -9,6 +11,7 @@ return {
   config = function(_, opts)
     local dap = require("dap")
     local dapui = require("dapui")
+
     dapui.setup(opts)
     dap.listeners.before.attach.dapui_config = function()
       dapui.open({})

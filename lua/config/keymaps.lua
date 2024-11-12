@@ -7,4 +7,14 @@ vim.api.nvim_set_keymap("x", "<leader>p", '"_dP', { noremap = true, silent = tru
 vim.api.nvim_set_keymap("n", "<S-s>", "<S-$>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<S-a>", "<S-^>", { noremap = true })
 vim.api.nvim_set_keymap("n", "d", '"_d', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-c>", '"+y', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-c>", '"+y', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-v>", '"+p', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-v>", '"+p', { noremap = true, silent = true })
+
 vim.keymap.set("n", "<C-d>", "mciw*<Cmd>nohl<CR>", { remap = true })
+
+vim.api.nvim_create_user_command("OilToggle", function()
+  vim.cmd((vim.bo.filetype == "oil") and "bd" or "Oil --float")
+end, { nargs = 0 })
+vim.api.nvim_set_keymap("n", "<leader>e", ":OilToggle<CR>", { noremap = true, silent = true })
