@@ -11,10 +11,28 @@ vim.api.nvim_set_keymap("n", "<C-c>", '"+y', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-c>", '"+y', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-v>", '"+p', { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<C-v>", '"+p', { noremap = true, silent = true })
-
 vim.keymap.set("n", "<C-d>", "mciw*<Cmd>nohl<CR>", { remap = true })
 
 vim.api.nvim_create_user_command("OilToggle", function()
   vim.cmd((vim.bo.filetype == "oil") and "bd" or "Oil --float")
 end, { nargs = 0 })
 vim.api.nvim_set_keymap("n", "<leader>e", ":OilToggle<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_create_autocmd("BufRead", {
+  callback = function()
+    local filetype = vim.bo.filetype
+    local dapui = require("dapui")
+
+    if
+      vim.tbl_contains(
+        { "typescript", "ts", "c", "cpp", "py", "python", "go", "elx", "php", "javascript", "js" },
+        filetype
+      )
+    then
+      dapui.open()
+      vim.defer_fn(function()
+        vim.cmd("Trouble diagnostics toggle")
+      end, 4000)
+    end
+  end,
+})

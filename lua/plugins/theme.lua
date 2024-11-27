@@ -4,6 +4,8 @@ return {
     "ardinugrxha/night-horizon.nvim",
     opts = {
       style = "midnight",
+      colors = {},
+      highlights = {},
     },
   },
   {

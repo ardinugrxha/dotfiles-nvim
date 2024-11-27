@@ -56,6 +56,9 @@ return {
         build = "./install.sh",
       },
     },
+    opts = function()
+      require("overseer").enable_dap()
+    end,
     config = function()
       local dap = require("dap")
       for _, language in ipairs(js_based_languages) do
@@ -147,6 +150,7 @@ return {
       -- Optional: Set up debugging keybindings
       vim.fn.sign_define("DapBreakpoint", { text = "🟥", texthl = "", linehl = "", numhl = "" })
       vim.fn.sign_define("DapStopped", { text = "➡️", texthl = "", linehl = "", numhl = "" })
+      require("dap.ext.vscode").load_launchjs()
     end,
   },
 }

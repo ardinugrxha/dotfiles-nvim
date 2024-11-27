@@ -10,3 +10,11 @@ require("hbac").setup({
   end,
   close_buffers_with_windows = false,
 })
+require("overseer").setup({
+  dap = true,
+  strategy = "toggleterm",
+})
+require("overseer").enable_dap()
+require("toggleterm").setup({
+  auto_scroll = true,
+})
