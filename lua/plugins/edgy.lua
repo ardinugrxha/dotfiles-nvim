@@ -28,8 +28,17 @@ return {
               return vim.api.nvim_win_get_config(win).relative == ""
             end,
           },
+          {
+            title = "Trouble",
+            ft = "trouble",
+            size = { width = 0.5 },
+            pinned = true,
+            filter = function(buf)
+              return vim.bo[buf].filetype == "trouble"
+            end,
+          },
           { title = "DAP Repl", ft = "dap-repl", size = { height = 13 } },
-          "Trouble",
+
           { ft = "qf", title = "QuickFix" },
           {
             ft = "help",
@@ -43,14 +52,15 @@ return {
         },
         left = {
           {
-            title = "Aerial",
-            ft = "aerial",
-            size = { height = 92 },
+            title = "Outline",
+            ft = "Outline", -- Set to the filetype used by symbols-outline.nvim
+            size = { height = 200 },
+            pinned = true,
             filter = function(buf)
-              return vim.bo[buf].filetype == "aerial"
+              return vim.bo[buf].filetype == "Outline"
             end,
             open = function()
-              vim.cmd("AerialToggle")
+              vim.cmd("SymbolsOutline")
             end,
           },
           { title = "DAP Scopes", ft = "dapui_scopes", size = { height = 0.4, width = 50 } },
