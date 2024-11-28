@@ -36,3 +36,31 @@ vim.api.nvim_create_autocmd("BufRead", {
     end
   end,
 })
+
+local function focus_or_attach_dap(buffer_name, dap_ui_element)
+  local found = false
+
+  -- Check if the buffer already exists
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    local buf_name = vim.api.nvim_buf_get_name(buf)
+    if buf_name:match(buffer_name) then
+      vim.api.nvim_set_current_win(win) -- Focus the window
+      found = true
+      break
+    end
+  end
+
+  -- If not found, open the specified DAP UI element
+  if not found then
+    require("dapui").open({ dap_ui_element })
+  end
+end
+
+vim.keymap.set("n", "<leader>w1", function()
+  focus_or_attach_dap("DAP Scopes", "scopes")
+end, { desc = "Focus or open DAP Scopes" })
+
+vim.keymap.set("n", "<leader>w2", function()
+  focus_or_attach_dap("DAP Console", "console")
+end, { desc = "Focus or open DAP Console" })

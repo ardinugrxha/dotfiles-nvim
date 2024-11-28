@@ -42,6 +42,17 @@ return {
           { title = "Neotest Output", ft = "neotest-output-panel", size = { height = 13 } },
         },
         left = {
+          {
+            title = "Aerial",
+            ft = "aerial",
+            size = { height = 92 },
+            filter = function(buf)
+              return vim.bo[buf].filetype == "aerial"
+            end,
+            open = function()
+              vim.cmd("AerialToggle")
+            end,
+          },
           { title = "DAP Scopes", ft = "dapui_scopes", size = { height = 0.4, width = 50 } },
           { title = "DAP Breakpoints", ft = "dapui_breakpoints", size = { height = 0.2, width = 50 } },
           { title = "DAP Stacks", ft = "dapui_stacks", size = { height = 0.2, width = 50 } },
@@ -74,30 +85,6 @@ return {
           end,
         },
       }
-
-      if LazyVim.has("neo-tree.nvim") then
-        local pos = {
-          filesystem = "left",
-          buffers = "top",
-          git_status = "right",
-          document_symbols = "bottom",
-          diagnostics = "bottom",
-        }
-        local sources = LazyVim.opts("neo-tree.nvim").sources or {}
-        for i, v in ipairs(sources) do
-          table.insert(opts.left, i, {
-            title = "Neo-Tree " .. v:gsub("_", " "):gsub("^%l", string.upper),
-            ft = "neo-tree",
-            filter = function(buf)
-              return vim.b[buf].neo_tree_source == v
-            end,
-            pinned = true,
-            open = function()
-              vim.cmd(("Neotree show position=%s %s dir=%s"):format(pos[v] or "bottom", v, LazyVim.root()))
-            end,
-          })
-        end
-      end
 
       -- Add DAP-specific trouble integration
       for _, pos in ipairs({ "top", "bottom", "left", "right" }) do
