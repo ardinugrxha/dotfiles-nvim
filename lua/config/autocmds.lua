@@ -15,6 +15,4 @@ require("overseer").setup({
   strategy = "toggleterm",
 })
 require("overseer").enable_dap()
-require("toggleterm").setup({
-  auto_scroll = true,
-})
+require("toggleterm").setup()

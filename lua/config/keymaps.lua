@@ -30,6 +30,8 @@ vim.api.nvim_create_autocmd("BufRead", {
       )
     then
       dapui.open()
+
+      vim.cmd("Outline")
       vim.defer_fn(function()
         vim.cmd("Trouble diagnostics toggle")
       end, 6000)
@@ -60,7 +62,3 @@ end
 vim.keymap.set("n", "<leader>w1", function()
   focus_or_attach_dap("DAP Scopes", "scopes")
 end, { desc = "Focus or open DAP Scopes" })
-
-vim.keymap.set("n", "<leader>w0", function()
-  focus_or_attach_dap("DAP Console", "dap-terminal")
-end, { desc = "Focus or open DAP Console" })

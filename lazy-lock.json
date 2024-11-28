@@ -57,9 +57,9 @@
   "nvim-ts-autotag": { "branch": "main", "commit": "e239a560f338be31337e7abc3ee42515daf23f5e" },
   "oil.nvim": { "branch": "master", "commit": "3c2de37accead0240fbe812f5ccdedfe0b973557" },
   "outline.nvim": { "branch": "main", "commit": "6c44527837ff7ac1cd054dc365a721e881020a2e" },
-  "overseer.nvim": { "branch": "master", "commit": "10ee48ff96c8d1049efb278ea4c8cf9f3b0e4326" },
   "persistence.nvim": { "branch": "main", "commit": "f6aad7dde7fcf54148ccfc5f622c6d5badd0cc3d" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
+  "popup.nvim": { "branch": "master", "commit": "b7404d35d5d3548a82149238289fa71f7f6de4ac" },
   "snacks.nvim": { "branch": "main", "commit": "985be4a759f6fe83e569679da431eeb7d2db5286" },
   "tailwindcss-colorizer-cmp.nvim": { "branch": "main", "commit": "3d3cd95e4a4135c250faf83dd5ed61b8e5502b86" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "cf48d4dfce44e0b9a2e19a008d6ec6ea6f01a83b" },
@@ -74,6 +74,7 @@
   "vim-dadbod-completion": { "branch": "master", "commit": "da0e75c09c27a82aad078d993bb1b2f4afd43427" },
   "vim-dadbod-ui": { "branch": "master", "commit": "28a16902cb2134c934b85da5250033ee43b0dee5" },
   "vim-visual-multi": { "branch": "master", "commit": "a6975e7c1ee157615bbc80fc25e4392f71c344d4" },
+  "vs-tasks.nvim": { "branch": "main", "commit": "e21772a2bc628ca69b64b0ae3a06c065bfc598d2" },
   "vscode-js-debug": { "branch": "main", "commit": "889c62da06de2e97167d534054a533e0badc3c64" },
   "which-key.nvim": { "branch": "main", "commit": "b9684c6ec54d8a8452bdcf0d613c7ad0223fc3fe" }
 }

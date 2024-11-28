@@ -29,32 +29,37 @@ return {
             end,
           },
           {
+            ft = "help",
+            size = { height = 13 },
+            filter = function(buf)
+              return vim.bo[buf].buftype == "help"
+            end,
+          },
+          {
             title = "Trouble",
             ft = "trouble",
-            size = { width = 0.5 },
+            size = { height = 13 },
             pinned = true,
             filter = function(buf)
               return vim.bo[buf].filetype == "trouble"
             end,
           },
           { title = "DAP Repl", ft = "dap-repl", size = { height = 13 } },
-
           { ft = "qf", title = "QuickFix" },
-          {
-            ft = "help",
-            size = { height = 20 },
-            filter = function(buf)
-              return vim.bo[buf].buftype == "help"
-            end,
-          },
           { title = "Spectre", ft = "spectre_panel", size = { height = 0.4 } },
-          { title = "Neotest Output", ft = "neotest-output-panel", size = { height = 13 } },
         },
         left = {
+          { title = "DAP Scopes", ft = "dapui_scopes", size = { height = 0.4, width = 50 } },
+          { title = "DAP Breakpoints", ft = "dapui_breakpoints", size = { height = 0.2, width = 50 } },
+          { title = "DAP Stacks", ft = "dapui_stacks", size = { height = 0.2, width = 50 } },
+          { title = "DAP Watches", ft = "dapui_watches", size = { height = 0.2, width = 50 } },
+          { title = "Neotest Summary", ft = "neotest-summary" },
+        },
+        right = {
           {
             title = "Outline",
             ft = "Outline", -- Set to the filetype used by symbols-outline.nvim
-            size = { height = 200 },
+            size = { height = 90, width = 53 },
             pinned = true,
             filter = function(buf)
               return vim.bo[buf].filetype == "Outline"
@@ -63,21 +68,15 @@ return {
               vim.cmd("SymbolsOutline")
             end,
           },
-          { title = "DAP Scopes", ft = "dapui_scopes", size = { height = 0.4, width = 50 } },
-          { title = "DAP Breakpoints", ft = "dapui_breakpoints", size = { height = 0.2, width = 50 } },
-          { title = "DAP Stacks", ft = "dapui_stacks", size = { height = 0.2, width = 50 } },
-          { title = "DAP Watches", ft = "dapui_watches", size = { height = 0.2, width = 50 } },
-          { title = "Neotest Summary", ft = "neotest-summary" },
-        },
-        right = {
-          { title = "DAP Console", ft = "dapui_console", size = { width = 55 } },
           {
             ft = "toggleterm",
-            size = { height = 0.35 },
+            size = { height = 0.8, width = 53 },
+            pinned = true,
             filter = function(buf, win)
               return vim.api.nvim_win_get_config(win).relative == ""
             end,
           },
+          -- { title = "DAP Console", ft = "dapui_console", size = { height = 0.9, width = 53 }, pinned = false },
         },
         keys = {
           -- Resize bindings
