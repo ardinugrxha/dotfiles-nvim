@@ -23,7 +23,7 @@ return {
         bottom = {
           {
             ft = "noice",
-            size = { height = 0.4 },
+            size = { height = 0.13 },
             filter = function(buf, win)
               return vim.api.nvim_win_get_config(win).relative == ""
             end,
@@ -39,7 +39,7 @@ return {
             end,
           },
           { title = "Spectre", ft = "spectre_panel", size = { height = 0.4 } },
-          { title = "Neotest Output", ft = "neotest-output-panel", size = { height = 15 } },
+          { title = "Neotest Output", ft = "neotest-output-panel", size = { height = 13 } },
         },
         left = {
           { title = "DAP Scopes", ft = "dapui_scopes", size = { height = 0.4, width = 50 } },
