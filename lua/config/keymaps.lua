@@ -30,8 +30,6 @@ vim.api.nvim_create_autocmd("BufRead", {
       )
     then
       dapui.open()
-
-      vim.cmd("Outline")
       vim.defer_fn(function()
         vim.cmd("Trouble diagnostics toggle")
       end, 6000)
@@ -42,7 +40,6 @@ vim.api.nvim_create_autocmd("BufRead", {
 local function focus_or_attach_dap(buffer_name, dap_ui_element)
   local found = false
 
-  -- Check if the buffer already exists
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local buf = vim.api.nvim_win_get_buf(win)
     local buf_name = vim.api.nvim_buf_get_name(buf)
@@ -53,7 +50,6 @@ local function focus_or_attach_dap(buffer_name, dap_ui_element)
     end
   end
 
-  -- If not found, open the specified DAP UI element
   if not found then
     require("dapui").open({ dap_ui_element })
   end
@@ -62,3 +58,9 @@ end
 vim.keymap.set("n", "<leader>w1", function()
   focus_or_attach_dap("DAP Scopes", "scopes")
 end, { desc = "Focus or open DAP Scopes" })
+
+vim.keymap.set("n", "<leader>ft", function()
+  require("toggleterm").toggle()
+end, { desc = "Toggle Terminal" })
+
+vim.api.nvim_set_keymap("t", "<ESC>", [[<C-\><C-n>]], { noremap = true, silent = true })
