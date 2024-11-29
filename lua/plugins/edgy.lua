@@ -43,17 +43,6 @@ return {
               return vim.api.nvim_win_get_config(win).relative == ""
             end,
           },
-          {
-            title = "Trouble",
-            ft = "trouble",
-            size = { height = 13 },
-            pinned = true,
-            filter = function(buf)
-              return vim.bo[buf].filetype == "trouble"
-            end,
-          },
-          { ft = "qf", title = "QuickFix" },
-          { title = "Spectre", ft = "spectre_panel", size = { height = 0.4 } },
         },
         left = {
           { title = "DAP Scopes", ft = "dapui_scopes", size = { height = 0.4, width = 50 } },
@@ -81,22 +70,6 @@ return {
           end,
         },
       }
-
-      -- Add DAP-specific trouble integration
-      for _, pos in ipairs({ "top", "bottom", "left", "right" }) do
-        opts[pos] = opts[pos] or {}
-        table.insert(opts[pos], {
-          ft = "trouble",
-          filter = function(_buf, win)
-            return vim.w[win].trouble
-              and vim.w[win].trouble.position == pos
-              and vim.w[win].trouble.type == "split"
-              and vim.w[win].trouble.relative == "editor"
-              and not vim.w[win].trouble_preview
-          end,
-        })
-      end
-
       return opts
     end,
   },
