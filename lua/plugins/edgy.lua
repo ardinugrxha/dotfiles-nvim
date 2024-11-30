@@ -22,27 +22,21 @@ return {
       local opts = {
         bottom = {
           {
-            ft = "noice",
-            size = { height = 0.13 },
-            filter = function(buf, win)
-              return vim.api.nvim_win_get_config(win).relative == ""
-            end,
-          },
-          {
             ft = "help",
-            size = { height = 13, width = 100 },
+            size = { height = 14, width = 100 },
             filter = function(buf)
               return vim.bo[buf].buftype == "help"
             end,
           },
-          { title = "DAP Repl", ft = "dap-repl", size = { height = 13 } },
+          { title = "DAP Repl", ft = "dap-repl", size = { height = 14 } },
           {
             ft = "toggleterm",
-            size = { height = 13 },
+            size = { height = 14 },
             filter = function(buf, win)
               return vim.api.nvim_win_get_config(win).relative == ""
             end,
           },
+          { title = "DAP Console", ft = "dapui_console", size = { height = 14 } },
         },
         left = {
           { title = "DAP Scopes", ft = "dapui_scopes", size = { height = 0.4, width = 50 } },

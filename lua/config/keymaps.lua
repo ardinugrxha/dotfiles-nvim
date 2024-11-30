@@ -30,7 +30,6 @@ vim.api.nvim_create_autocmd("BufRead", {
       )
     then
       dapui.open()
-      require("toggleterm").toggle()
     end
   end,
 })
@@ -53,38 +52,42 @@ local function focus_or_attach_dap(buffer_name, dap_ui_element)
   end
 end
 
-vim.keymap.set("n", "<leader>w1", function()
+vim.keymap.set("n", "<leader>ds", function()
   focus_or_attach_dap("DAP Scopes", "scopes")
 end, { desc = "Focus or open DAP Scopes" })
 
-vim.keymap.set("n", "<leader>w2", function()
+vim.keymap.set("n", "<leader>dr", function()
   focus_or_attach_dap("dap%-repl%-", "repl") -- Focus or attach to DAP Repl
 end, { desc = "Focus or Open DAP Repl" })
 
-local function toggleterm_focus()
-  local Terminal = require("toggleterm.terminal").Terminal
+vim.keymap.set("n", "<leader>dt", function()
+  local terms = require("toggleterm.terminal")
+  local toggle = require("toggleterm").toggle
 
-  local term_win = nil
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    local buf = vim.api.nvim_win_get_buf(win)
-    if vim.bo[buf].filetype == "toggleterm" then
-      term_win = win
-      break
+  -- Check if any terminal buffer is already open
+  local term_open = false
+  for _, term in pairs(terms.get_all()) do
+    if term:is_open() then
+      term_open = true
+      term:toggle()
+      return
     end
   end
 
-  if term_win then
-    -- If terminal is already open in Edgy, focus it
-    vim.api.nvim_set_current_win(term_win)
-  else
-    -- Otherwise, toggle the terminal normally
-    local term = Terminal:new({ cmd = nil, hidden = true })
-    term:toggle()
+  -- If no terminal is open, toggle the default terminal
+  if not term_open then
+    toggle(1) -- Opens the default terminal (ID 1)
   end
-end
+end, { desc = "Toggle Terminal" })
 
-vim.keymap.set("n", "<leader>ft", toggleterm_focus, { desc = "Toggle Terminal" })
-vim.keymap.set("n", "<C-/>", toggleterm_focus, { desc = "Toggle Floating Terminal" }) -- <C-/> is <C-_>
-vim.keymap.set("n", "<leader>w3", toggleterm_focus, { desc = "Toggle Terminal" }) -- <C-/> is <C-_>
+vim.keymap.set("n", "<leader>dx", function()
+  local dap = require("dap")
+  if dap.session() then
+    dap.terminate()
+    print("DAP session terminated.")
+  else
+    print("No active DAP session.")
+  end
+end, { desc = "Terminate DAP Session" })
 
 vim.api.nvim_set_keymap("t", "<ESC>", [[<C-\><C-n>]], { noremap = true, silent = true })

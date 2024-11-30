@@ -15,7 +15,9 @@ require("overseer").setup({
   strategy = "toggleterm",
 })
 require("overseer").enable_dap()
-require("toggleterm").setup()
+require("toggleterm").setup({
+  direction = "float",
+})
 require("outline").setup({
   {
     symbols = {
