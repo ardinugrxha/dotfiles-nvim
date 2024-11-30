@@ -91,3 +91,8 @@ vim.keymap.set("n", "<leader>dx", function()
 end, { desc = "Terminate DAP Session" })
 
 vim.api.nvim_set_keymap("t", "<ESC>", [[<C-\><C-n>]], { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>dq", function()
+  require("dap").clear_breakpoints()
+  print("All breakpoints cleared.")
+end, { desc = "Clear all DAP breakpoints" })
