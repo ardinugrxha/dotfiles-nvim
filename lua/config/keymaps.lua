@@ -18,22 +18,6 @@ vim.api.nvim_create_user_command("OilToggle", function()
 end, { nargs = 0 })
 vim.api.nvim_set_keymap("n", "<leader>e", ":OilToggle<CR>", { noremap = true, silent = true })
 
-vim.api.nvim_create_autocmd("BufRead", {
-  callback = function()
-    local filetype = vim.bo.filetype
-    local dapui = require("dapui")
-
-    if
-      vim.tbl_contains(
-        { "typescript", "ts", "c", "cpp", "py", "python", "go", "elx", "php", "javascript", "js" },
-        filetype
-      )
-    then
-      dapui.open()
-    end
-  end,
-})
-
 local function focus_or_attach_dap(buffer_name, dap_ui_element)
   local found = false
 
