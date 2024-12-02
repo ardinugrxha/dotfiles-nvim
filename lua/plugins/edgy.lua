@@ -36,27 +36,12 @@ return {
               return vim.api.nvim_win_get_config(win).relative == ""
             end,
           },
-          {
-            title = "Trouble",
-            ft = "trouble",
-            size = { height = 14 },
-            pinned = true,
-            filter = function(buf)
-              return vim.bo[buf].filetype == "trouble"
-            end,
-            open = function(buf)
-              if not vim.tbl_isempty(vim.diagnostic.get(0)) then
-                vim.cmd("Trouble diagnostics toggle")
-              end
-            end,
-          },
-          -- { title = "DAP Console", ft = "dapui_console", size = { height = 14 } },
+          { title = "DAP Console", ft = "dapui_console", size = { height = 14 } },
         },
         left = {
-          { title = "DAP Scopes", ft = "dapui_scopes", size = { height = 0.4 } },
-          { title = "DAP Repl", ft = "dap-repl", size = { height = 0.4 } },
-          { title = "DAP Breakpoints", ft = "dapui_breakpoints", size = { height = 0.2, width = 50 } },
-          { title = "DAP Stacks", ft = "dapui_stacks", size = { height = 0.2, width = 50 } },
+          -- { title = "DAP Breakpoints", ft = "dapui_breakpoints", size = { height = 0.2, width = 50 } },
+          -- { title = "DAP Watch", ft = "dapui_watches", size = { height = 0.2, width = 50 } },
+          -- { title = "DAP Stacks", ft = "dapui_stacks", size = { height = 0.2, width = 50 } },
           { title = "Neotest Summary", ft = "neotest-summary" },
         },
         right = {},
