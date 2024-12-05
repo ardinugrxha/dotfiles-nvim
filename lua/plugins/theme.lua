@@ -1,13 +1,14 @@
 return {
   -- add gruvbox
   {
-    "ardinugrxha/night-horizon.nvim",
+    "navarasu/onedark.nvim",
     opts = {
-      style = "midnight",
+      style = "darker",
       colors = {},
       highlights = {},
     },
   },
+
   {
     "uloco/bluloco.nvim",
     lazy = false,
@@ -18,10 +19,11 @@ return {
       transparent = true
     end,
   },
+
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "night-horizon",
+      colorscheme = "onedark",
     },
   },
 }
